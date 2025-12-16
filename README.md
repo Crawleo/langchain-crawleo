@@ -24,6 +24,8 @@ pip install -U langchain-crawleo
 
 Set your Crawleo API key as an environment variable:
 
+you can get your API key from your [Crawleo dashboard](https://crawleo.dev/dashboard).
+
 ```python
 import getpass
 import os
@@ -64,7 +66,7 @@ from langchain_crawleo import CrawleoSearch
 tool = CrawleoSearch(
     max_pages=1,
     cc="US",
-    # setLang="en",
+    setLang="en",
     # geolocation="random",
     # device="desktop",
     # enhanced_html=True,
@@ -98,6 +100,21 @@ search = CrawleoSearch(cc="US")
 # Override country during invocation
 result = search.invoke({"query": "local news", "cc": "DE"})
 # This will use cc="DE" instead of "US"
+```
+
+
+### Full Example
+
+```python
+from langchain_crawleo import CrawleoSearch
+search_tool = CrawleoSearch(
+    max_pages=1,
+    cc="US",
+    setLang="en",
+    markdown=True,
+)
+result = search_tool.invoke({"query": "What is the future of AI?"})
+print(result)
 ```
 
 ### Response Format
